@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('Mini-Project 2 Backend Server')
+    res.send('This is the Ecommerce API.')
 });
 
 app.use('/api/shop', productRoutes );
