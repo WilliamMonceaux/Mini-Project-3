@@ -16,7 +16,7 @@
   "main": "index.js",
   "scripts": {
     "test": "",
-    "start": "node --watch index.js"
+    "start": "node --watch server.js"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
