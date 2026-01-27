@@ -5,10 +5,6 @@ const app = express();
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('This is the Ecommerce API.')
-});
-
 app.use('/api/shop', productRoutes );
 
-module.exports = { app };
+module.exports = app;
