@@ -1,5 +1,12 @@
-const express = require('express');
-const app = express();
-require('dotenv').config();
+const app = require("./app");
+require("dotenv").config();
+const dbConnect = require("./dbConnect");
 
-let dbConnect = require('./dbConnect');
+const startServer = async () => {
+  await dbConnect();
+
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+};
