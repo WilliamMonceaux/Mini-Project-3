@@ -22,8 +22,7 @@ const connectMysql = async () => {
     }
 }
 
-connectMysql();
-
 module.exports = {
-    Sequelize: sequelize
-}
+    connectMysql,
+    sequelize,
+};
