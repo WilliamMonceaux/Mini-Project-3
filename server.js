@@ -1,12 +1,22 @@
 const app = require("./app");
 require("dotenv").config();
-const dbConnect = require("./dbConnect");
+const { connectMysql } = require("./dbConnect");
+
+let userRoutes = require('./routes/userRoutes');
+app.use('/api/users', userRoutes);
 
 const startServer = async () => {
-  await dbConnect();
+    try {
+        await connectMysql();
 
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
+        const PORT = process.env.PORT || 3000;
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+        });
+    } catch (err) {
+        console.error("Database connection error", err);
+        process.exit(1);
+    }
 };
+
+startServer();
