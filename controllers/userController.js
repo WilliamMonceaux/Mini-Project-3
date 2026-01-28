@@ -1,7 +1,7 @@
 "use strict";
 const Models = require("../models");
 
-const getUsers = (res) => {
+const getUsers = (req, res) => {
   Models.User.findAll({})
     .then((data) => {
       res.send({ result: 200, data: data });
@@ -12,8 +12,8 @@ const getUsers = (res) => {
     });
 };
 
-const createUser = (data, res) => {
-  Models.User.create(data)
+const createUser = (req, res) => {
+  Models.User.create(req.body)
     .then((data) => {
       res.send({ result: 200, data: data });
     })
