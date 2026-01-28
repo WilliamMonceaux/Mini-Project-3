@@ -22,7 +22,9 @@ User.init(
       allowNull: false,
       unique: true,
       lowercase: true,
-      match: [/\S+@\S+\.\S+/, "Please use a valid email address"],
+      validate: {
+    isEmail: { msg: "Please use a valid email address" }
+  },
     },
     address: {
       type: DataTypes.STRING,
