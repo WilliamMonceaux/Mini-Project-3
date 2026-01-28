@@ -1,7 +1,5 @@
 const { DataTypes, Model } = require("sequelize");
-let dbConnect = require("../dbConnect");
-
-const sequelizeInstance = dbConnect.Sequelize;
+let { sequelize } = require("../dbConnect");
 
 class Product extends Model {}
 
@@ -35,7 +33,7 @@ Product.init(
     },
   },
   {
-    sequelize: sequelizeInstance,
+    sequelize,
     modelName: "products",
     timestamps: true,
     freezeTableName: true,
