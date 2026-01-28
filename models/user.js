@@ -1,7 +1,5 @@
 const { DataTypes, Model } = require("sequelize");
-let dbConnect = require("../dbConnect");
-
-const sequelizeInstance = dbConnect.Sequelize;
+let { sequelize } = require("../dbConnect");
 
 class User extends Model {}
 
@@ -16,11 +14,15 @@ User.init(
     userName: {
       type: DataTypes.STRING,
       allowNull: false,
+      trim: true,
     },
     email: {
       type: DataTypes.STRING,
+      required: [true, "Email is required"],
       allowNull: false,
       unique: true,
+      lowercase: true,
+      match: [/\S+@\S+\.\S+/, "Please use a valid email address"],
     },
     address: {
       type: DataTypes.STRING,
@@ -32,7 +34,7 @@ User.init(
     },
   },
   {
-    sequelize: sequelizeInstance,
+    sequelize,
     modelName: "users",
     timestamps: true,
     freezeTableName: true,
