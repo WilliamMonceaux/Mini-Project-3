@@ -1,6 +1,6 @@
 const app = require("./app");
 require("dotenv").config();
-const { connectMysql } = require("./dbConnect");
+const { connectMysql } = require("./config/dbConnect");
 
 const startServer = async () => {
   try {
