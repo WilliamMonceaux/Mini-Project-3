@@ -9,7 +9,7 @@ function FetchProducts({ children }) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("/api/shop/products");
+        const response = await axios.get("/api/products");
         setProducts(response.data);
       } catch (error) {
         console.error("Error: Could not fetch data.", error.message);
