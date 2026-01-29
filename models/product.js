@@ -1,5 +1,5 @@
 const { DataTypes, Model } = require("sequelize");
-let { sequelize } = require("../dbConnect");
+let { sequelize } = require("../config/dbConnect");
 
 class Product extends Model {}
 
