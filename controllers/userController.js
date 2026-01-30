@@ -7,7 +7,7 @@ const getUsers = (req, res) => {
       res.send({ result: 200, data: data });
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       res.send({ result: 500, error: err.message });
     });
 };
@@ -18,7 +18,7 @@ const createUser = (req, res) => {
       res.send({ result: 200, data: data });
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       res.send({ result: 500, error: err.message });
     });
 };
