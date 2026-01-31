@@ -14,3 +14,5 @@ router.post('/', addItemToCart);
 router.put('/:id', updateCartItem);
 
 router.delete('/:id', deleteCartItem);
+
+module.exports = router;
