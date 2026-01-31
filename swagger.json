@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "My Calculator Project",
-    "description": "My User Project Application API",
+    "title": "Ecommerce store CRUD API",
+    "description": "API for managing an ecommerce store with products, users, orders, and carts with CRUD operations.",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
@@ -12,11 +12,32 @@
   "host": "localhost:3000",
   "basePath": "/",
   "tags": [
-    {
-      "name": "Calculator",
-      "description": "API for Calculus in the system"
-    }
+    { "name": "Users", "description": "API for users." },
+    { "name": "Products", "description": "API for products." },
+    { "name": "Orders", "description": "API for orders." },
+    { "name": "Carts", "description": "API for carts." }
   ],
+  "paths": {
+    "/api/users": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Read all users",
+        "parameters": [
+          {
+            "name": "Name",
+            "in": "query",
+            "description": "Finds all users",
+            "type": "string" 
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
   "schemes": ["http"],
   "consumes": ["application/json"],
   "produces": ["application/json"]
