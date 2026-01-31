@@ -12,11 +12,7 @@ Product.init(
       primaryKey: true,
     },
     price: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-    },
-    category: {
-      type: DataTypes.STRING,
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
     title: {
@@ -25,6 +21,10 @@ Product.init(
     },
     description: {
       type: DataTypes.STRING(1000),
+      allowNull: false,
+    },
+    category: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     image: {
