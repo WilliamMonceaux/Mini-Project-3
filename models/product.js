@@ -11,12 +11,12 @@ Product.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    price: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
     title: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    price: {
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
     description: {
