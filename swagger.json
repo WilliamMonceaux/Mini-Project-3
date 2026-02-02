@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "Ecommerce store CRUD API",
-    "description": "API documentation for managing users and products."
+    "description": "API documentation for managing users, products, carts, and orders."
   },
   "host": "localhost:3000",
   "basePath": "/",
@@ -43,7 +43,7 @@
           }
         ],
         "responses": {
-          "200": { "description": "User created successfully" },
+          "201": { "description": "User created successfully" },
           "500": { "description": "Internal server error" }
         }
       }
@@ -126,7 +126,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Product created successfully",
             "500": { "description": "Internal server error" }
           }
@@ -212,12 +212,12 @@
           }
         ],
         "responses": {
-          "200": { "description": "Cart created successfully" },
+          "201": { "description": "Cart created successfully" },
           "500": { "description": "Internal server error" }
         }
       }
     },
-    "/api/carts/{id}": {
+    "/api/carts/{cartId}": {
       "put": {
         "tags": ["Carts"],
         "summary": "Update cart item quantity",
