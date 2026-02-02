@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "Ecommerce store CRUD API",
-    "description": "..."
+    "description": "API documentation for managing users and products."
   },
   "host": "localhost:3000",
   "basePath": "/",
@@ -29,13 +29,44 @@
             "in": "body",
             "description": "User object",
             "schema": {
-               "type": "object",
-               "properties": {
-                  "userName": { "type": "string" },
-                  "email": { "type": "string" },
-                  "address": { "type": "string" },
-                  "password": { "type": "string" }
-               }
+              "type": "object",
+              "properties": {
+                "userName": { "type": "string" },
+                "email": { "type": "string" },
+                "address": { "type": "string" },
+                "password": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK" }
+        }
+      }
+    },
+    "/api/users/{userId}": {
+      "put": {
+        "tags": ["Users"],
+        "summary": "Update a user",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of the user to update"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userName": { "type": "string" },
+                "email": { "type": "string" },
+                "address": { "type": "string" },
+                "password": { "type": "string" }
+              }
             }
           }
         ],
@@ -43,14 +74,21 @@
           "200": { "description": "OK" }
         }
       },
-      "Put": {
+      "delete": {
         "tags": ["Users"],
-        "summary": "Update a user",
+        "summary": "delete a user",
         "parameters": [
-            {
-            
-            }
-        ]
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of the user to delete"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK"}
+        }
       }
     }
   },
