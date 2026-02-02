@@ -40,7 +40,7 @@
           }
         ],
         "responses": {
-          "200": { "description": "OK" }
+          "200": { "description": "list of users retrieved" }
         }
       }
     },
@@ -71,7 +71,7 @@
           }
         ],
         "responses": {
-          "200": { "description": "OK" }
+          "200": { "description": "updated users" }
         }
       },
       "delete": {
@@ -87,7 +87,89 @@
           }
         ],
         "responses": {
-          "200": { "description": "OK"}
+          "200": { "description": "user deleted"}
+        }
+      }
+    },
+    "/api/products": {
+      "get": {
+        "tags": ["Products"],
+        "summary": "Get all products",
+        "responses": {
+          "200": { "description": "List of products retrieved" }
+        }
+      },
+      "post": {
+        "tags": ["Products"],
+        "summary": "Create a new products",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {"type": "string" },
+                "price": { "type": "number" },
+                "description": { "type": "string" },
+                "category": { "type": "integer" },
+                "image": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product created successfully"
+          }
+        }
+      }
+    },
+      "/api/products/{productId}": {
+      "put": {
+        "tags": ["Products"],
+        "summary": "Update a product",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of the product to update"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "price": { "type": "integer" },
+                "description": { "type": "string" },
+                "category": { "type": "string" },
+                "image": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "product updated"}
+        }
+      },
+      "delete": {
+        "tags": ["Products"],
+        "summary": "delete a product",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of the product to delete"
+          }
+        ],
+        "responses": {
+          "200": { "description": "product deleted" }
         }
       }
     }
