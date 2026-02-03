@@ -19,6 +19,7 @@ Cart.init(
     productId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: { model: 'products', key: 'id'},
     },
     quantity: {
       type: DataTypes.INTEGER,
