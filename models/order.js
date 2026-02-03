@@ -14,11 +14,13 @@ Order.init(
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+       references: { model: "users", key: "id" },
     },
     totalAmount: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
       defaultValue: 0.0,
+      field: 'total_amount'
     },
     status: {
       type: DataTypes.ENUM(
