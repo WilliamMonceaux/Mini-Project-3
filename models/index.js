@@ -4,19 +4,18 @@ const Product = require("./product");
 const Order = require("./order");
 const Cart = require("./cart");
 
-User.hasMany(Order);
-Order.belongsTo(User);
-User.hasMany(Cart);
-Cart.belongsTo(User);
-Product.hasMany(Cart);
-Cart.belongsTo(Product);
-
+User.hasMany(Order, { foreignKey: "userId" });
+Order.belongsTo(User, { foreignKey: "userId" });
+User.hasMany(Cart, { foreignKey: "userId" });
+Cart.belongsTo(User, { foreignKey: "userId" });
+Product.hasMany(Cart, { foreignKey: "productId" });
+Cart.belongsTo(Product, { foreignKey: "productId" });
 
 async function init() {
-  await User.sync();
-  await Product.sync();
-  await Order.sync();
-  await Cart.sync();
+ await User.sync({ alter: true });
+  await Product.sync({ alter: true });
+  await Order.sync({ alter: true });
+  await Cart.sync({ alter: true });
 }
 
 init();
