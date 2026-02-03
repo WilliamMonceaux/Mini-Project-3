@@ -217,7 +217,7 @@
         }
       }
     },
-    "/api/carts/{cartId}": {
+    "/api/carts/{id}": {
       "put": {
         "tags": ["Carts"],
         "summary": "Update cart item quantity",
@@ -300,7 +300,7 @@
         }
       }
     },
-    "/api/orders/{orderId}": {
+    "/api/orders/{id}": {
       "put": {
         "tags": ["Orders"],
         "summary": "Update order details or status",
