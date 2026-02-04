@@ -1,0 +1,359 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Ecommerce store CRUD API",
+    "description": "API documentation for managing users, products, carts, and orders."
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    { "name": "Users", "description": "CRUD operations for users." },
+    { "name": "Products", "description": "CRUD operations for products." },
+    { "name": "Carts", "description": "CRUD operations for carts." },
+    { "name": "Orders", "description": "CRUD operations for orders." }
+  ],
+  "paths": {
+    "/api/users": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Read all users",
+        "responses": {
+          "200": { "description": "Users found" },
+          "500": { "description": "Internal server error" }
+        }
+      },
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create a new user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userName": { "type": "string" },
+                "email": { "type": "string" },
+                "address": { "type": "string" },
+                "password": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": { "description": "User created successfully" },
+          "500": { "description": "Internal server error" }
+        }
+      }
+    },
+    "/api/users/{userId}": {
+      "put": {
+        "tags": ["Users"],
+        "summary": "Update a user",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of the user to update"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userName": { "type": "string" },
+                "email": { "type": "string" },
+                "address": { "type": "string" },
+                "password": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "updated users" },
+          "500": { "description": "Internal server error" }
+        }
+      },
+      "delete": {
+        "tags": ["Users"],
+        "summary": "Delete a user",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of the user to delete"
+          }
+        ],
+        "responses": {
+          "200": { "description": "user deleted" },
+          "500": { "description": "Internal server error" }
+        }
+      }
+    },
+    "/api/products": {
+      "get": {
+        "tags": ["Products"],
+        "summary": "Get all products",
+        "responses": {
+          "200": { "description": "List of products retrieved" },
+          "500": { "description": "Internal server error" }
+        }
+      },
+      "post": {
+        "tags": ["Products"],
+        "summary": "Create a new products",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "price": { "type": "number" },
+                "description": { "type": "string" },
+                "category": { "type": "integer" },
+                "image": { "type": "string" },
+                "rating": {
+                  "type": "object",
+                  "properties": {
+                    "rate": { "type": "number" },
+                    "count": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Product created successfully",
+            "500": { "description": "Internal server error" }
+          }
+        }
+      }
+    },
+    "/api/products/{productId}": {
+      "put": {
+        "tags": ["Products"],
+        "summary": "Update a product",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of the product to update"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "price": { "type": "integer" },
+                "description": { "type": "string" },
+                "category": { "type": "string" },
+                "image": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "product updated" },
+          "500": { "description": "Internal server error" }
+        }
+      },
+      "delete": {
+        "tags": ["Products"],
+        "summary": "Delete a product",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of the product to delete"
+          }
+        ],
+        "responses": {
+          "200": { "description": "product deleted" },
+          "500": { "description": "Internal server error" }
+        }
+      }
+    },
+    "/api/carts": {
+      "get": {
+        "tags": ["Carts"],
+        "summary": "Read all carts",
+        "responses": {
+          "200": { "description": "List of carts retrieved" },
+          "500": { "description": "Internal server error" }
+        }
+      },
+      "post": {
+        "tags": ["Carts"],
+        "summary": "Create a new product",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Product object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": { "type": "integer" },
+                "productId": { "type": "integer" },
+                "quantity": { "type": "integer" },
+                "unitPrice": { "type": "number" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": { "description": "Cart created successfully" },
+          "500": { "description": "Internal server error" }
+        }
+      }
+    },
+    "/api/carts/{id}": {
+      "put": {
+        "tags": ["Carts"],
+        "summary": "Update cart item quantity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "The unique ID of the cart record"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Updated quantity",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "quantity": { "type": "integer" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Cart updated successfully" },
+          "500": { "description": "Internal server error" }
+        }
+      },
+      "delete": {
+        "tags": ["Carts"],
+        "summary": "Remove item from cart",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "The unique ID of the cart record to remove"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Item removed from cart" },
+          "500": { "description": "Internal server error" }
+        }
+      }
+    },
+    "/api/orders": {
+      "get": {
+        "tags": ["Orders"],
+        "summary": "Read all orders",
+        "responses": {
+          "200": { "description": "List of all orders retrieved" },
+          "500": { "description": "Internal server error" }
+        }
+      },
+      "post": {
+        "tags": ["Orders"],
+        "summary": "Create a new order",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Order Object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": { "type": "integer" },
+                "totalAmount": {
+                  "type": "number"
+                },
+                "status": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": { "description": "Order created successfully" },
+          "500": { "description": "Internal server error" }
+        }
+      }
+    },
+    "/api/orders/{id}": {
+      "put": {
+        "tags": ["Orders"],
+        "summary": "Update order details or status",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": { "type": "string", "example": "shipped" },
+                "totalAmount": { "type": "number" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Order updated successfully" },
+          "500": { "description": "Internal server error" }
+        }
+      },
+      "delete": {
+        "tags": ["Orders"],
+        "summary": "Cancel and delete an order",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Order deleted successfully" },
+          "500": { "description": "Internal server error" }
+        }
+      }
+    }
+  },
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"]
+}
