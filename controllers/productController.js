@@ -5,30 +5,12 @@ const BASE_URL = "http://fakestoreapi.com/products";
 
 const getProducts = async (req, res) => {
   try {
-    const apiPromise = fetch(BASE_URL);
-    const dbPromise = Models.Product.findAll({});
+    const products = await Models.Product.findAll({});
 
-    const [apiResponse, dbProducts] = await Promise.all([
-      apiPromise,
-      dbPromise,
-    ]);
-
-    if (!apiResponse.ok) {
-      return res
-        .status(apiResponse.status)
-        .json({ error: "Couldn't fetch product data" });
-    }
-
-    const apiProducts = await apiResponse.json();
-
-    const combinedProducts = [...dbProducts, ...apiProducts];
-
-    res.status(200).json(combinedProducts);
+    res.status(200).json(products);
   } catch (error) {
-    console.error(
-      `Error! Couldn't fetch fetch product data. Error: ${error.message}`,
-    );
-    res.status(500).json({ error: "Failed to fetch products" });
+    console.error(`Error fetching products from DB: ${error.message}`);
+    res.status(500).json({ error: "Failed to retrieve products" });
   }
 };
 
