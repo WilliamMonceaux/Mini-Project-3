@@ -18,7 +18,6 @@ User.init(
     },
     email: {
       type: DataTypes.STRING,
-      required: [true, "Email is required"],
       allowNull: false,
       unique: true,
       lowercase: true,
